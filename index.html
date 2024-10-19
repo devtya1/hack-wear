@@ -1,128 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fake Hacker Login</title>
-  <style>
-    /* Adjust for the circular display of the Galaxy Watch 6 */
-    body {
-      margin: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background-color: black;
-      color: #00ff00;
-      font-family: 'Courier New', Courier, monospace;
-      text-align: center;
-      overflow: hidden;
-    }
-
-    .login-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 300px; /* Adjusted for the watch size */
-      z-index: 100; /* Ensures the login form is on top */
-      animation: fadeIn 2s ease-in-out;
-    }
-
-    input {
-      background-color: black;
-      border: 1px solid #00ff00;
-      color: #00ff00;
-      padding: 8px;
-      margin-bottom: 10px;
-      font-size: 16px;
-      width: 90%;
-      text-align: center;
-    }
-
-    button {
-      background-color: #00ff00;
-      color: black;
-      padding: 10px 20px;
-      border: none;
-      cursor: pointer;
-      font-size: 16px;
-    }
-
-    /* Door animations */
-    .left-door, .right-door {
-      position: absolute;
-      top: 0;
-      height: 100%;
-      width: 50%;
-      background: url('https://via.placeholder.com/240x480?text=Steel+Door') no-repeat center center;
-      background-size: cover;
-      z-index: 10; /* Below the login form */
-      display: none; /* Initially hidden */
-    }
-
-    .left-door {
-      left: -50%;
-    }
-
-    .right-door {
-      right: -50%;
-    }
-
-    /* Fade-in animation for the login form */
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    /* Door sliding animation */
-    @keyframes slideLeft {
-      100% {
-        left: 0;
-      }
-    }
-
-    @keyframes slideRight {
-      100% {
-        right: 0;
-      }
-    }
-  </style>
-</head>
-<body>
-  <div class="login-container">
-    <h1>LOGIN</h1>
-    <input type="text" id="username" placeholder="Username">
-    <input type="password" id="password" placeholder="Password">
-    <button onclick="checkLogin()">Enter</button>
-  </div>
-
-  <!-- Steel Door Animations -->
-  <div class="left-door" id="leftDoor"></div>
-  <div class="right-door" id="rightDoor"></div>
-
-  <script>
-    function checkLogin() {
-      var username = document.getElementById("username").value;
-      var password = document.getElementById("password").value;
-
-      // Simple login check
-      if (username === "rag0728" && password === "pass@123") {
-        // Make the doors visible and start the animation
-        document.getElementById("leftDoor").style.display = "block";
-        document.getElementById("rightDoor").style.display = "block";
-
-        // Trigger door animation
-        document.getElementById("leftDoor").style.animation = "slideLeft 1s forwards";
-        document.getElementById("rightDoor").style.animation = "slideRight 1s forwards";
-
-        // Redirect to hacking.html after 1 second
-        setTimeout(function() {
-          window.location.href = "hacking.html";
-        }, 1000);
-      } else {
-        alert("Access Denied!");
-      }
-    }
-  </script>
-</body>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>RAW</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>"
+        <div class="terminal" id="terminal">
+        </div>
+        <center>
+            <button id="hack">Start</button>
+        </center>
+    </body>
+    <script src="main.js"></script>
 </html>
