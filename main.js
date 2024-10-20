@@ -73,7 +73,7 @@ function displayCode(code, callback) {
 // Play sound
 var audio;
 function playSound() {
-    audio = new Audio('sound.mp4');
+    audio = new Audio('sound.mp3');
     audio.loop = true; // Loop the sound
     audio.play();
 }
