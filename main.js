@@ -23,15 +23,13 @@ var OLDcode = `
 #include <linux/pm_runtime.h>
 #include <linux/pm_qos.h>
 #include "pci.h"
+/* Extended the code for a longer output */
 const u8 pci_acpi_dsm_uuid[] = {
     0xd0, 0x37, 0xc9, 0xe5, 0x53, 0x35, 0x7a, 0x4d,
     0x91, 0x17, 0xea, 0x4d, 0x19, 0xc3, 0x43, 0x4d
 };
 for (int i = 0; i < 100; i++) {
     printk("PCI system loading... Step " + i + "\\n");
-}
-for (int j = 0; j < 50; j++) {
-    printk("System analysis in progress... Step " + j + "\\n");
 }
 phys_addr_t acpi_pci_root_get_mcfg_addr(acpi_handle handle)
 {
@@ -53,15 +51,16 @@ function displayCode(code, callback) {
 
     function appendLine() {
         if (currentLine < lines.length) {
+            // Check for confirm line
             if (lines[currentLine].includes("<?php echo 'Send virus?' ?>")) {
                 document.getElementById("yes").style.display = "inline-block";
                 document.getElementById("no").style.display = "inline-block";
-                stopSound(); // Stop sound at the confirmation prompt
+                stopSound(); // Stop the sound when confirmation comes
             } else {
                 terminal.innerText += lines[currentLine] + '\n';
             }
             currentLine++;
-            setTimeout(appendLine, 200);
+            setTimeout(appendLine, 200); // Continue after 200ms delay for each line
         } else if (callback) {
             callback();
         }
@@ -70,15 +69,14 @@ function displayCode(code, callback) {
     appendLine();
 }
 
-// Play sound
+// Function to play sound
 var audio;
 function playSound() {
     audio = new Audio('sound.mp3');
-    audio.loop = true; // Loop the sound
     audio.play();
 }
 
-// Stop sound
+// Function to stop sound
 function stopSound() {
     if (audio) {
         audio.pause();
@@ -87,14 +85,15 @@ function stopSound() {
 }
 
 document.getElementById("hack").addEventListener("click", function() {
-    this.style.display = "none";
-    playSound();
+    this.style.display = "none"; // Hide the "Start" button
+    playSound(); // Play sound
+
     displayCode(code, function() {
-        displayCode(OLDcode, stopSound); // Continue with OLDcode, stop sound when finished
+        displayCode(OLDcode, stopSound); // Stop sound after OLDcode finishes
     });
 });
 
-// Handle button clicks
+// Handle "Yes" and "No" button clicks
 document.getElementById("yes").addEventListener("click", function() {
     document.getElementById("terminal").innerText += "[CONFIRMED] Virus sent...\n";
     document.getElementById("yes").style.display = "none";
@@ -109,7 +108,7 @@ document.getElementById("no").addEventListener("click", function() {
     displayCode(OLDcode, stopSound);
 });
 
-// Scroll terminal
+// Scroll terminal to bottom every 100ms
 setInterval(function() {
     var term = document.getElementById("terminal");
     term.scrollTop = term.scrollHeight;
