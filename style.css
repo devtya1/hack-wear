@@ -31,7 +31,7 @@ body {
 }
 
 /* Button styling */
-#hack {
+#hack, #yes, #no {
     background-color: black;
     color: lightgreen;
     border: 2px solid lightgreen;
@@ -48,16 +48,16 @@ body {
 }
 
 /* Neon glow on hover */
-#hack:hover, #hack:active {
+#hack:hover, #yes:hover, #no:hover, #hack:active, #yes:active, #no:active {
     background-color: rgba(0, 255, 0, 0.1);
     box-shadow: 0px 0px 20px rgba(0, 255, 0, 1), 0px 0px 40px rgba(0, 255, 0, 0.7), 0px 0px 60px rgba(0, 255, 0, 0.5);
     color: white;
     border-color: white;
 }
 
-/* Make button glow more on touch for touch devices */
+/* Button glow more on touch */
 @media (hover: none) {
-    #hack:active {
+    #hack:active, #yes:active, #no:active {
         background-color: rgba(0, 255, 0, 0.2);
         box-shadow: 0px 0px 30px rgba(0, 255, 0, 1), 0px 0px 50px rgba(0, 255, 0, 0.7);
         color: white;
