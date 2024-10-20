@@ -62,7 +62,7 @@ function displayCode(code) {
 
 // Play sound when the button is clicked
 function playSound() {
-    var audio = new Audio('sound.mp4');
+    var audio = new Audio('sound.mp3');
     audio.play();
 }
 
