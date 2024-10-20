@@ -5,6 +5,7 @@ body {
     overflow-wrap: break-word;
     overflow: hidden;
 }
+
 .terminal {
     color: lightgreen;
     width: 100%;
@@ -19,11 +20,47 @@ body {
     animation-iteration-count: infinite;
     animation-direction: alternate;
 }
+
 @keyframes colorthing {
     from {
         color: rgb(0, 255, 0);
     }
     to {
         color: rgb(0, 200, 0);
+    }
+}
+
+/* Button styling */
+#hack {
+    background-color: black;
+    color: lightgreen;
+    border: 2px solid lightgreen;
+    padding: 10px 20px;
+    font-family: monospace;
+    font-size: 1.2em;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    box-shadow: 0px 0px 5px rgba(0, 255, 0, 0.8);
+    transition: all 0.3s ease-in-out;
+    outline: none;
+    border-radius: 5px;
+}
+
+/* Neon glow on hover */
+#hack:hover, #hack:active {
+    background-color: rgba(0, 255, 0, 0.1);
+    box-shadow: 0px 0px 20px rgba(0, 255, 0, 1), 0px 0px 40px rgba(0, 255, 0, 0.7), 0px 0px 60px rgba(0, 255, 0, 0.5);
+    color: white;
+    border-color: white;
+}
+
+/* Make button glow more on touch for touch devices */
+@media (hover: none) {
+    #hack:active {
+        background-color: rgba(0, 255, 0, 0.2);
+        box-shadow: 0px 0px 30px rgba(0, 255, 0, 1), 0px 0px 50px rgba(0, 255, 0, 0.7);
+        color: white;
+        border-color: white;
     }
 }
