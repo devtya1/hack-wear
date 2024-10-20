@@ -55,8 +55,10 @@ function displayCode(code, callback) {
             if (lines[currentLine].includes("<?php echo 'Send virus?' ?>")) {
                 // Show buttons at confirmation request and stop sound
                 stopSound();
-                document.getElementById("yes").style.display = "inline-block";
-                document.getElementById("no").style.display = "inline-block";
+                setTimeout(() => {
+                    document.getElementById("yes").style.display = "inline-block";
+                    document.getElementById("no").style.display = "inline-block";
+                }, 10000); // Show buttons after 10 seconds
             } else {
                 terminal.innerText += lines[currentLine] + '\n';
             }
