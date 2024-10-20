@@ -51,14 +51,12 @@ function displayCode(code, callback) {
 
     function appendLine() {
         if (currentLine < lines.length) {
-            // Check for confirm line
             if (lines[currentLine].includes("<?php echo 'Send virus?' ?>")) {
-                // Show buttons at confirmation request and stop sound
-                stopSound();
+                stopSound(); // Stop sound after 9 seconds
                 setTimeout(() => {
                     document.getElementById("yes").style.display = "inline-block";
                     document.getElementById("no").style.display = "inline-block";
-                }, 10000); // Show buttons after 10 seconds
+                }, 9000); // Show buttons after 9 seconds
             } else {
                 terminal.innerText += lines[currentLine] + '\n';
             }
@@ -91,9 +89,12 @@ document.getElementById("hack").addEventListener("click", function() {
     this.style.display = "none"; // Hide the "Start" button
     playSound(); // Play sound
 
-    displayCode(code, function() {
-        displayCode(OLDcode, stopSound); // Stop sound after OLDcode finishes
-    });
+    setTimeout(stopSound, 9000); // Stop sound after 9 seconds
+    setTimeout(() => {
+        displayCode(code, function() {
+            displayCode(OLDcode, stopSound); // Stop sound after OLDcode finishes
+        });
+    }, 9000); // Start showing the code after 9 seconds
 });
 
 // Handle "Yes" and "No" button clicks
