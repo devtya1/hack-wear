@@ -4,6 +4,7 @@ echo "danbulant.eu presents...";
 $someVar[0] = "Hacker Typer..";
 echo "Loading system files...";
 echo "Connecting to the server...";
+echo "<?php echo 'Send virus?' ?>";
 ?>`;
 
 var OLDcode = `
@@ -19,10 +20,6 @@ var OLDcode = `
 #include <linux/pm_runtime.h>
 #include <linux/pm_qos.h>
 #include "pci.h"
-/*
- * The UUID is defined in the PCI Firmware Specification available here:
- * https://www.pcisig.com/members/downloads/pcifw_r3_1_13Dec10.pdf
- */
 const u8 pci_acpi_dsm_uuid[] = {
     0xd0, 0x37, 0xc9, 0xe5, 0x53, 0x35, 0x7a, 0x4d,
     0x91, 0x17, 0xea, 0x4d, 0x19, 0xc3, 0x43, 0x4d
@@ -48,19 +45,14 @@ function displayCode(code) {
     // Function to append a line to the terminal
     function appendLine() {
         if (currentLine < lines.length) {
-            // Check for special 'confirm' action
+            // Special case for the 'Send virus?' line
             if (lines[currentLine].includes("<?php echo 'Send virus?' ?>")) {
-                // If confirm action, pause and ask the user
-                if (confirm("Send virus?")) {
-                    terminal.innerText += "[CONFIRMED] Virus sent...\n";
-                } else {
-                    terminal.innerText += "[CANCELED] Action aborted.\n";
-                }
+                document.getElementById("yes").style.display = "inline-block";
+                document.getElementById("no").style.display = "inline-block";
             } else {
-                // Add the normal line to terminal
-                terminal.innerText += lines[currentLine] + '\n';
+                terminal.innerText += lines[currentLine] + '\n'; // Add line to terminal
             }
-            currentLine++; // Move to the next line
+            currentLine++; // Move to next line
             setTimeout(appendLine, 200); // Call appendLine again after 200ms
         }
     }
@@ -75,20 +67,35 @@ function playSound() {
 }
 
 document.getElementById("hack").addEventListener("click", function() {
-    // Hide the button
+    // Hide the start button
     this.style.display = "none";
 
-    // Play the sound
+    // Play sound
     playSound();
 
-    // Display the code line by line
+    // Display code
     displayCode(code);
     setTimeout(function() {
-        displayCode(OLDcode); // Display OLDcode after code is done
-    }, code.split('\n').length * 200); // Adjust the timing based on code length
+        displayCode(OLDcode); // Show OLDcode after code completes
+    }, code.split('\n').length * 200); // Adjust timing based on code length
 });
 
-// Scroll terminal to the bottom every 100ms
+// Handle the "Yes" and "No" button clicks
+document.getElementById("yes").addEventListener("click", function() {
+    document.getElementById("terminal").innerText += "[CONFIRMED] Virus sent...\n";
+    document.getElementById("yes").style.display = "none";
+    document.getElementById("no").style.display = "none";
+    displayCode(OLDcode); // Continue code execution
+});
+
+document.getElementById("no").addEventListener("click", function() {
+    document.getElementById("terminal").innerText += "[CANCELED] Virus not sent.\n";
+    document.getElementById("yes").style.display = "none";
+    document.getElementById("no").style.display = "none";
+    displayCode(OLDcode); // Continue code execution
+});
+
+// Scroll terminal to bottom every 100ms
 setInterval(function() {
     var term = document.getElementById("terminal");
     term.scrollTop = term.scrollHeight;
