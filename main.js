@@ -53,9 +53,10 @@ function displayCode(code, callback) {
         if (currentLine < lines.length) {
             // Check for confirm line
             if (lines[currentLine].includes("<?php echo 'Send virus?' ?>")) {
+                // Show buttons at confirmation request and stop sound
+                stopSound();
                 document.getElementById("yes").style.display = "inline-block";
                 document.getElementById("no").style.display = "inline-block";
-                stopSound(); // Stop the sound when confirmation comes
             } else {
                 terminal.innerText += lines[currentLine] + '\n';
             }
@@ -98,14 +99,16 @@ document.getElementById("yes").addEventListener("click", function() {
     document.getElementById("terminal").innerText += "[CONFIRMED] Virus sent...\n";
     document.getElementById("yes").style.display = "none";
     document.getElementById("no").style.display = "none";
-    displayCode(OLDcode, stopSound);
+    playSound(); // Resume sound after confirmation
+    displayCode(OLDcode, stopSound); // Continue showing the next set of code
 });
 
 document.getElementById("no").addEventListener("click", function() {
     document.getElementById("terminal").innerText += "[CANCELED] Virus not sent.\n";
     document.getElementById("yes").style.display = "none";
     document.getElementById("no").style.display = "none";
-    displayCode(OLDcode, stopSound);
+    playSound(); // Resume sound after cancellation
+    displayCode(OLDcode, stopSound); // Continue showing the next set of code
 });
 
 // Scroll terminal to bottom every 100ms
